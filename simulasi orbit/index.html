@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulasi Orbit dengan Integrasi dan Diferensial</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #00172b, #003d73);
+            color: white;
+            text-align: center;
+        }
+        canvas {
+            display: block;
+            margin: 20px auto;
+            border: 1px solid white;
+            background: radial-gradient(circle, #ffcc33, #00172b);
+        }
+        h1 {
+            margin-top: 10px;
+        }
+        p {
+            font-size: 14px;
+            margin: 10px 20px;
+        }
+        #controls {
+            margin-top: 10px;
+        }
+        button {
+            background-color: #007acc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #005f99;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simulasi Orbit Planet</h1>
+    <p>
+        Simulasi ini menggunakan metode integrasi Euler untuk menghitung posisi planet berdasarkan hukum gravitasi Newton. 
+        Posisi planet diperbarui setiap iterasi menggunakan metode diferensial dan integrasi numerik.
+    </p>
+    <canvas id="simulation" width="600" height="600"></canvas>
+    <div id="controls">
+        <button onclick="startSimulation()">Mulai</button>
+        <button onclick="resetSimulation()">Reset</button>
+    </div>
+
+    <script>
+        const canvas = document.getElementById("simulation");
+        const ctx = canvas.getContext("2d");
+
+        // Parameter fisika
+        const G = 6.67430e-11; // Gravitational constant (m^3 kg^-1 s^-2)
+        const M = 1.989e30; // Mass of the Sun (kg)
+        const scale = 1e9; // Scaling for visualization (1 pixel = 1e9 meters)
+        const dt = 60 * 60; // Time step in seconds (1 hour)
+
+        // Planet properties
+        let planet = {
+            x: 150e9, // Initial x position (meters)
+            y: 0,     // Initial y position (meters)
+            vx: 0,    // Initial x velocity (meters/second)
+            vy: 30000 // Initial y velocity (meters/second)
+        };
+
+        let running = false;
+        let animationFrame;
+
+        function drawSun() {
+            ctx.save();
+            ctx.translate(300, 300);
+            const gradient = ctx.createRadialGradient(0, 0, 10, 0, 0, 20);
+            gradient.addColorStop(0, "#ffcc33");
+            gradient.addColorStop(1, "#ff9900");
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(0, 0, 20, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.restore();
+        }
+
+        function drawPlanet() {
+            const px = 300 + planet.x / scale;
+            const py = 300 + planet.y / scale;
+
+            ctx.fillStyle = "#00ccff";
+            ctx.beginPath();
+            ctx.arc(px, py, 8, 0, 2 * Math.PI);
+            ctx.fill();
+
+            // Adding planet rings for style
+            ctx.strokeStyle = "rgba(0, 204, 255, 0.5)";
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.arc(px, py, 10, 0, 2 * Math.PI);
+            ctx.stroke();
+        }
+
+        function updatePlanet() {
+            // Menghitung jarak planet ke matahari
+            const r = Math.sqrt(planet.x ** 2 + planet.y ** 2);
+
+            // **Metode Diferensial**: Menghitung percepatan dari gaya gravitasi
+            const F = (G * M) / (r ** 2); // Gaya gravitasi
+            const ax = -F * (planet.x / r); // Percepatan pada sumbu x
+            const ay = -F * (planet.y / r); // Percepatan pada sumbu y
+
+            // **Metode Integrasi**: Memperbarui kecepatan menggunakan percepatan
+            planet.vx += ax * dt; // Kecepatan pada sumbu x
+            planet.vy += ay * dt; // Kecepatan pada sumbu y
+
+            // **Metode Integrasi**: Memperbarui posisi menggunakan kecepatan
+            planet.x += planet.vx * dt; // Posisi pada sumbu x
+            planet.y += planet.vy * dt; // Posisi pada sumbu y
+        }
+
+        function startSimulation() {
+            if (!running) {
+                running = true;
+                animate();
+            }
+        }
+
+        function resetSimulation() {
+            running = false;
+            cancelAnimationFrame(animationFrame);
+
+            // Reset planet properties
+            planet.x = 150e9;
+            planet.y = 0;
+            planet.vx = 0;
+            planet.vy = 30000;
+
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawSun();
+        }
+
+        function animate() {
+            if (!running) return;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawSun();
+            drawPlanet();
+            updatePlanet();
+
+            animationFrame = requestAnimationFrame(animate);
+        }
+
+        // Initial draw
+        drawSun();
+    </script>
+</body>
+</html>

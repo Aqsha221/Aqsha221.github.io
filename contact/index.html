@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .contact-card {
+            background: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            width: 400px;
+            padding: 20px;
+            text-align: center;
+            animation: slideIn 1s ease-in-out;
+        }
+        .contact-card h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .contact-card p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .contact-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .contact-list li i {
+            font-size: 20px;
+            color: #ff6b6b;
+            margin-right: 10px;
+        }
+        .contact-list a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        .contact-list a:hover {
+            color: #ff6b6b;
+        }
+        .button {
+            margin-top: 20px;
+        }
+        .button a {
+            text-decoration: none;
+            background: #ff6b6b;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        .button a:hover {
+            background: #fad0c4;
+            color: #333;
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="contact-card">
+        <h1>Contact Us</h1>
+        <p>Hubungi kami melalui informasi berikut:</p>
+        <ul class="contact-list">
+            <li><i class="fas fa-phone"></i> <a href="tel:085175318814>+62 812 3456 7890</a></li>
+            <li><i class="fas fa-envelope"></i> <a href="mailto:email@example.com">aqshabaru21@gmail.com</a></li>
+            <li><i class="fas fa-instagram"></i> <a href="https://instagram.com/username" target="_blank">aqsha221</a></li>
+            <li><i class="fas fa-map-marker-alt"></i> <span>Jalan Sambung Rasa ,Lr Pelita II Palembang,Sumatera Selatan</span></li>
+        </ul>
+        <div class="button">
+            <a href="mailto:email@example.com">Kirim Pesan</a>
+        </div>
+    </div>
+
+    <!-- Link ke Font Awesome untuk ikon -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>
