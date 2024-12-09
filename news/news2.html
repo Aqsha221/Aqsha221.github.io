@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berita - Metode Numerik</title>
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .news-container {
+            background-color: #fff;
+            width: 90%;
+            max-width: 1000px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+            overflow: hidden;
+            animation: slideUp 1s ease-out;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #4CAF50;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #666;
+            line-height: 1.6;
+            margin: 20px auto;
+            width: 80%;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .key-points {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 40px;
+            animation: fadeInUp 2s ease-out;
+        }
+
+        .key-point {
+            background-color: #4CAF50;
+            color: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            width: 250px;
+            margin: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, background-color 0.3s;
+        }
+
+        .key-point:hover {
+            transform: translateY(-10px);
+            background-color: #45a049;
+        }
+
+        .key-point h3 {
+            margin-top: 0;
+            font-size: 1.8em;
+            color: #fff;
+        }
+
+        .key-point p {
+            font-size: 1.1em;
+            color: #fff;
+            line-height: 1.4;
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="news-container">
+        <h1>Metode Numerik</h1>
+        <p>Metode numerik adalah cabang ilmu matematika yang menggunakan algoritma untuk menyelesaikan masalah matematika melalui pendekatan numerik, yang berarti menggunakan angka untuk mendekati solusi dari masalah tersebut. Dalam banyak kasus, masalah yang tidak dapat diselesaikan secara analitik (teoritis) dapat diselesaikan menggunakan metode numerik. Metode ini sangat berguna dalam berbagai bidang seperti fisika, teknik, ekonomi, dan bahkan astronomi.</p>
+
+        <div class="key-points">
+            <div class="key-point">
+                <h3>Jenis-Jenis Metode Numerik</h3>
+                <p>Beberapa jenis metode numerik yang umum digunakan antara lain: metode beda hingga, metode iterasi, dan metode eliminasi Gauss. Setiap metode memiliki keunggulan dan kelemahan tergantung pada jenis masalah yang ingin diselesaikan.</p>
+            </div>
+            <div class="key-point">
+                <h3>Metode Beda Hingga</h3>
+                <p>Metode beda hingga digunakan untuk menyelesaikan persamaan diferensial dan persamaan diferensial parsial dengan mendiskretkan waktu atau ruang menjadi grid dan menghitung solusinya secara numerik.</p>
+            </div>
+            <div class="key-point">
+                <h3>Metode Iterasi</h3>
+                <p>Metode iterasi digunakan untuk mencari solusi persamaan non-linier atau sistem persamaan linear secara bertahap. Beberapa contoh metode iterasi yang terkenal adalah metode Newton-Raphson dan metode Jacobi.</p>
+            </div>
+            <div class="key-point">
+                <h3>Metode Gauss</h3>
+                <p>Metode Gauss, termasuk eliminasi Gauss dan eliminasi Gauss-Jordan, digunakan untuk menyelesaikan sistem persamaan linear. Metode ini memanipulasi matriks koefisien untuk menemukan solusi.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

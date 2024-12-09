@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berita - Stabilitas Atmosfer</title>
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f2f2f2;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .news-container {
+            background-color: #fff;
+            width: 90%;
+            max-width: 1000px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+            overflow: hidden;
+            animation: slideUp 1s ease-out;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #4CAF50;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #666;
+            line-height: 1.6;
+            margin: 20px auto;
+            width: 80%;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .key-points {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 40px;
+            animation: fadeInUp 2s ease-out;
+        }
+
+        .key-point {
+            background-color: #4CAF50;
+            color: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            width: 250px;
+            margin: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, background-color 0.3s;
+        }
+
+        .key-point:hover {
+            transform: translateY(-10px);
+            background-color: #45a049;
+        }
+
+        .key-point h3 {
+            margin-top: 0;
+            font-size: 1.8em;
+            color: #fff;
+        }
+
+        .key-point p {
+            font-size: 1.1em;
+            color: #fff;
+            line-height: 1.4;
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="news-container">
+        <h1>Stabilitas Atmosfer</h1>
+        <p>Stabilitas atmosfer adalah kondisi di mana lapisan udara di atmosfer berada dalam keadaan yang stabil atau tidak stabil. Hal ini mengacu pada kemampuan atmosfer untuk menghalangi atau mendukung pergerakan vertikal udara. Stabilitas atmosfer berpengaruh besar pada fenomena cuaca, seperti pembentukan awan, hujan, dan badai. Meteorologi modern menggunakan konsep stabilitas atmosfer untuk memprediksi pola cuaca dan memahami fenomena atmosfer yang lebih kompleks.</p>
+
+        <div class="key-points">
+            <div class="key-point">
+                <h3>Pengertian Stabilitas Atmosfer</h3>
+                <p>Stabilitas atmosfer menggambarkan kemampuan atmosfer untuk menahan atau mengendalikan gerakan vertikal udara. Ketika udara naik, ia akan mendingin atau memanas sesuai dengan suhu udara di sekitarnya. Jika perbedaan suhu antara udara yang naik dan udara sekitarnya cukup besar, maka gerakan udara dapat berlanjut dan menciptakan kondisi yang tidak stabil.</p>
+            </div>
+            <div class="key-point">
+                <h3>Jenis-Jenis Stabilitas</h3>
+                <p>Terdapat tiga jenis stabilitas atmosfer: stabil, tidak stabil, dan netral. Jika udara lebih dingin dari udara di sekitarnya, maka atmosfer stabil. Sebaliknya, jika udara lebih panas, atmosfer tidak stabil. Stabilitas netral terjadi ketika suhu udara yang naik atau turun tidak jauh berbeda dengan suhu sekitarnya.</p>
+            </div>
+            <div class="key-point">
+                <h3>Pengaruh terhadap Cuaca</h3>
+                <p>Stabilitas atmosfer memengaruhi pembentukan awan dan fenomena cuaca lainnya. Kondisi atmosfer yang tidak stabil dapat menyebabkan pembentukan awan cumulus yang lebih besar, serta badai dan hujan. Sementara itu, atmosfer yang stabil cenderung menghasilkan cuaca cerah dan tenang.</p>
+            </div>
+            <div class="key-point">
+                <h3>Aplikasi dalam Meteorologi</h3>
+                <p>Stabilitas atmosfer digunakan oleh meteorolog untuk memprediksi cuaca dan fenomena atmosfer lainnya. Misalnya, pemahaman tentang stabilitas dapat membantu memprediksi pembentukan awan badai atau daerah tekanan rendah yang dapat menyebabkan cuaca buruk.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

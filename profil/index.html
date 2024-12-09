@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil Mahasiswa</title>
+  <style>
+    /* Reset dan gaya dasar */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Elemen background 3D */
+    .background {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+    .background .circle {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: float 10s infinite ease-in-out;
+    }
+    .background .circle:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; }
+    .background .circle:nth-child(2) { top: 30%; left: 70%; animation-delay: 3s; }
+    .background .circle:nth-child(3) { top: 60%; left: 40%; animation-delay: 6s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Kontainer profil */
+    .profile-container {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
+      width: 400px;
+      text-align: center;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    /* Animasi fade-in */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Foto Profil */
+    .profile-container .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 20px;
+      border: 5px solid #007BFF;
+    }
+    .profile-container .profile-pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Teks profil */
+    .profile-container h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .profile-container p {
+      margin: 10px 0;
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    /* Tombol */
+    .profile-container .button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      color: #fff;
+      background: #007BFF;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .profile-container .button:hover {
+      background: #0056b3;
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <!-- Elemen Background -->
+  <div class="background">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+
+  <!-- Konten Profil -->
+  <div class="profile-container">
+    <!-- Foto Profil -->
+    <div class="profile-pic">
+      <img src="/gambar/aqsha.jpg" alt="Foto Profil"> <!-- Ganti URL dengan foto Anda -->
+    </div>
+    <h1>Profil Mahasiswa</h1>
+    <p><strong>Nama:</strong> Muhammad Aqsha Rizqiqa Alghiffari</p>
+    <p><strong>NIM:</strong> 123290059</p>
+    <p><strong>Program Studi:</strong> Sains Atmosfer dan Keplanetan</p>
+    <p><strong>Hobi:</strong> Main game dan eksplorasi hal baru</p>
+    <a href="/index.html" class="button">Kembali</a>
+  </div>
+</body>
+</html>
