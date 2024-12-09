@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atmospheric Stability Calculator</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        #controls {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 300px;
+            z-index: 10;
+        }
+
+        input, select, button {
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            font-size: 1em;
+            width: 100%;
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        #output {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="controls">
+        <h2>Atmospheric Stability Calculator</h2>
+        <label for="condition">Atmospheric Condition:</label>
+        <select id="condition">
+            <option value="dry">Dry Adiabatic Lapse Rate (DALR)</option>
+            <option value="moist">Moist Adiabatic Lapse Rate (MALR)</option>
+        </select>
+
+        <label for="surfaceTemp">Surface Temperature (°C):</label>
+        <input type="number" id="surfaceTemp" placeholder="Enter Surface Temperature">
+
+        <label for="height">Max Height (km):</label>
+        <input type="number" id="height" placeholder="Enter Max Height">
+
+        <button onclick="calculateAndAnimate()">Calculate and Visualize</button>
+
+        <div id="output"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+    <script>
+        let scene, camera, renderer, particles = [], particleSystem, lapseRate;
+
+        const DALR = 10; // °C/km
+        const MALR = 6; // °C/km
+
+        function init3D() {
+            // Clear previous scene if exists
+            const container = document.body;
+            const existingCanvas = document.querySelector('canvas');
+            if (existingCanvas) existingCanvas.remove();
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 20;
+
+            renderer = new THREE.WebGLRenderer();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            container.appendChild(renderer.domElement);
+
+            animate();
+        }
+
+        function addParticles(surfaceTemp, maxHeight) {
+            const particleCount = 1000;
+            const particleMaterial = new THREE.PointsMaterial({
+                size: 0.2,
+                vertexColors: true,
+            });
+
+            const particleGeometry = new THREE.BufferGeometry();
+            const positions = [];
+            const colors = [];
+            const color = new THREE.Color();
+
+            for (let i = 0; i < particleCount; i++) {
+                const x = (Math.random() - 0.5) * 20; // Random X position
+                const y = Math.random() * maxHeight; // Height based on max height
+                const z = (Math.random() - 0.5) * 20; // Random Z position
+
+                positions.push(x, y, z);
+
+                // Calculate temperature based on height
+                const temp = surfaceTemp - lapseRate * y;
+
+                // Set color based on temperature (blue = cold, red = hot)
+                if (temp > 15) {
+                    color.setRGB(1, 0, 0); // Red for hot
+                } else if (temp > 5) {
+                    color.setRGB(1, 1, 0); // Yellow for warm
+                } else {
+                    color.setRGB(0, 0, 1); // Blue for cold
+                }
+
+                colors.push(color.r, color.g, color.b);
+            }
+
+            particleGeometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+            particleGeometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+
+            particleSystem = new THREE.Points(particleGeometry, particleMaterial);
+            scene.add(particleSystem);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            if (particleSystem) {
+                particleSystem.rotation.y += 0.002; // Rotate particles
+            }
+
+            renderer.render(scene, camera);
+        }
+
+        function calculateAndAnimate() {
+            const condition = document.getElementById('condition').value;
+            const surfaceTemp = parseFloat(document.getElementById('surfaceTemp').value);
+            const maxHeight = parseFloat(document.getElementById('height').value);
+
+            if (isNaN(surfaceTemp) || isNaN(maxHeight)) {
+                document.getElementById('output').innerText = 'Please enter valid inputs.';
+                return;
+            }
+
+            lapseRate = condition === 'dry' ? DALR : MALR;
+
+            // Calculate temperature at various heights
+            let output = `<strong>Results:</strong><br>`;
+            for (let h = 0; h <= maxHeight; h++) {
+                const temp = surfaceTemp - lapseRate * h;
+                output += `At ${h} km: ${temp.toFixed(2)} °C<br>`;
+            }
+
+            document.getElementById('output').innerHTML = output;
+
+            // Initialize 3D scene and add particles
+            init3D();
+            addParticles(surfaceTemp, maxHeight);
+        }
+
+        window.addEventListener('resize', () => {
+            if (renderer) {
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+            }
+        });
+
+        init3D(); // Initialize scene
+    </script>
+</body>
+
+</html>
